@@ -1,0 +1,27 @@
+{
+    "name": "AlistairShaw/YewCMS",
+    "version": "0.1",
+    "authors": [
+        "Alistair Shaw <alistairshaw@gmail.com>"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "test",
+        "tests",
+        "resources/bower_components"
+    ],
+    "dependencies": {
+        "select2": "~3.5.2",
+        "jquery.smooth-scroll": "~1.5.4",
+        "bootstrap-sass": "~3.3.4",
+        "jquery": "~2.1.1",
+        "font-awesome": "~4.2.0",
+        "nivoslider": "*",
+        "jquery-validate": "~1.13",
+        "world-flags-sprite": "*"
+    },
+    "homepage": "https://github.com/alistairshaw/yewcms",
+    "description": "Laravel CMS Package"
+}

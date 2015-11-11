@@ -5,11 +5,6 @@ use View;
 
 class PageController extends YewBaseController {
 
-    public function index()
-    {
-        return $this->page('');
-    }
-
     public function page($slug)
     {
         $page = new stdClass;

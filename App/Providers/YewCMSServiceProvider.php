@@ -30,6 +30,12 @@ class YewCMSServiceProvider extends ServiceProvider {
 
         // load translation files
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'yewcms');
+
+        // use artisan vendor:publish to copy over the database migrations and seeders
+        $this->publishes([
+            __DIR__.'/../../database/migrations' => database_path('migrations'),
+            __DIR__.'/../../database/seeds' => database_path('seeds')
+        ]);
     }
 
     /**

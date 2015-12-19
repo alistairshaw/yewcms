@@ -2,8 +2,8 @@
 
 use AlistairShaw\YewCMS\App\Base\ValueObjects\String\AuthToken;
 use AlistairShaw\YewCMS\App\Base\ValueObjects\Web\EmailAddress;
-use App\ThisIsValeting\User\User;
-use App\ThisIsValeting\User\UserRepository;
+use AlistairShaw\YewCMS\App\Entities\User\User;
+use AlistairShaw\YewCMS\App\Entities\User\UserRepository;
 
 interface UserAuth {
 

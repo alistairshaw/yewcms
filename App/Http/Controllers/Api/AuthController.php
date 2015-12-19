@@ -1,16 +1,16 @@
 <?php namespace AlistairShaw\YewCMS\App\Http\Controllers\Api;
 
-use App\ThisIsValeting\Base\Services\UserAuth\UserAuth;
-use App\ThisIsValeting\Base\ValueObjects\String\AuthToken;
-use App\ThisIsValeting\Base\ValueObjects\Web\EmailAddress;
-use App\ThisIsValeting\User\UserRepository;
+use AlistairShaw\YewCMS\App\Base\ValueObjects\String\AuthToken;
+use AlistairShaw\YewCMS\App\Base\ValueObjects\Web\EmailAddress;
+use AlistairShaw\YewCMS\App\Entities\User\User;
+use AlistairShaw\YewCMS\App\Entities\User\UserRepository;
 use Request;
 
 class AuthController extends ApiBaseController {
 
 	/**
 	 * @param UserRepository $userRepository
-	 * @return \App\ThisIsValeting\User\User
+	 * @return User
 	 */
 	public function login(UserRepository $userRepository)
 	{
@@ -33,6 +33,9 @@ class AuthController extends ApiBaseController {
 	 */
 	public function confirm(UserRepository $userRepository)
 	{
+        // NOTE: The username is this hash of the auth token plus the email address
+        // dd(sha1(Request::header('username') . Request::header('password')));
+
 		return $this->apiRespond(true, $this->userAuth->authenticateToken($userRepository, Request::header('username'), AuthToken::fromNative(Request::header('password')))->toOutput(['authToken']));
 	}
 

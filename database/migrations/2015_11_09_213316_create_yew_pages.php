@@ -25,8 +25,8 @@ class CreateYewPages extends Migration
             $table->integer('sort_order');
             $table->boolean('home_page');
             $table->integer('created_by')->unsigned();
-            $table->dateTime('deleted_at');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('language_id')->references('id')->on('yew_languages')->onDelete('restrict')->onDelete('restrict');
         });

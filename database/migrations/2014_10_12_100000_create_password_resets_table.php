@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateYewMenus extends Migration
+class CreatePasswordResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateYewMenus extends Migration
      */
     public function up()
     {
-        Schema::create('yew_menus', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('slug', 500);
-            $table->string('class', 500);
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token')->index();
+            $table->timestamp('created_at');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateYewMenus extends Migration
      */
     public function down()
     {
-        Schema::drop('yew_menus');
+        Schema::drop('password_resets');
     }
 }

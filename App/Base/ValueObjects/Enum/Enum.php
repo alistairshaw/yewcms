@@ -54,7 +54,7 @@ abstract class Enum implements ValueObject {
 
     /**
      * Returns a object taking PHP native value(s) as argument(s).
-     * @return ValueObject
+     * @return Mixed
      */
     public static function fromNative()
     {

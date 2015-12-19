@@ -1,7 +1,7 @@
 <?php
 
 // api for back end
-Route::group(['prefix' => '/api'], function ()
+Route::group(['prefix' => '/api', 'namespace' => 'AlistairShaw\YewCMS\App\Http\Controllers'], function ()
 {
     Route::group(['prefix' => '/auth'], function ()
     {
@@ -9,6 +9,8 @@ Route::group(['prefix' => '/api'], function ()
         Route::get('logout', 'Api\AuthController@logout');
         Route::get('confirm', 'Api\AuthController@confirm');
     });
+
+    Route::resource('user', 'Api\UserController');
 });
 
 // capture any undefined routes and pass to the CMS controller

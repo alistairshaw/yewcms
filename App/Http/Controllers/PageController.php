@@ -13,6 +13,8 @@ class PageController extends YewBaseController {
         $page->meta_keywords = 'Meta Keywords';
         $page->slug = $slug;
 
+        dd("No Route Defined");
+
         return View::make('yewcms::page', ['page' => $page]);
     }
 

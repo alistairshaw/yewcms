@@ -26,7 +26,7 @@ class YewCMSServiceProvider extends ServiceProvider {
         ], 'public');
 
         // include my package custom routes
-        include __DIR__.'/../../routes.php';
+        include __DIR__.'/../Http/routes.php';
 
         // load translation files
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'yewcms');
@@ -36,6 +36,10 @@ class YewCMSServiceProvider extends ServiceProvider {
             __DIR__.'/../../database/migrations' => database_path('migrations'),
             __DIR__.'/../../database/seeds' => database_path('seeds')
         ]);
+
+        // todo: We need to overwrite the Kernel class so we can remove the CSRF Token middleware for the API. At the moment
+        // I've just commented it out, but I think we can do something in the provider here to override it
+        // so we don't have to manually comment it out
     }
 
     /**
@@ -57,5 +61,29 @@ class YewCMSServiceProvider extends ServiceProvider {
         $loader = AliasLoader::getInstance();
         $loader->alias('Form', 'Illuminate\Html\FormFacade');
         $loader->alias('HTML', 'Illuminate\Html\HtmlFacade');
+
+        $this->registerRepositoryServiceProviders();
+        $this->registerServiceProviders();
+    }
+
+    private function registerRepositoryServiceProviders()
+    {
+        $this->app->bind(
+            'AlistairShaw\YewCMS\App\Base\Services\UserAuth\UserAuth',
+            'AlistairShaw\YewCMS\App\Base\Services\UserAuth\BasicUserAuth'
+        );
+
+        $this->app->bind(
+            'AlistairShaw\YewCMS\App\Entities\User\UserRepository',
+            'AlistairShaw\YewCMS\App\Entities\User\Repository\EloquentUserRepository'
+        );
+    }
+
+    private function registerServiceProviders()
+    {
+        $this->app->bind(
+            'AlistairShaw\YewCMS\App\Base\Services\ImageResize\ImageResize',
+            'AlistairShaw\YewCMS\App\Base\Services\ImageResize\GregwarImageResize'
+        );
     }
 }
